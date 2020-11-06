@@ -24,7 +24,6 @@ func LoadPolicyFromFS(fs http.FileSystem, path string, model model.Model) error 
 		return err
 	}
 	defer f.Close()
-
 	scanner := bufio.NewScanner(f)
 	for scanner.Scan() {
 		line := scanner.Text()
@@ -39,8 +38,8 @@ type Adapter struct {
 	path string
 }
 
-// New returns a newly initialized Adapter instance.
-func New(fs http.FileSystem, path string) *Adapter {
+// NewAdapter returns a newly initialized Adapter instance.
+func NewAdapter(fs http.FileSystem, path string) *Adapter {
 	return &Adapter{fs, path}
 }
 
