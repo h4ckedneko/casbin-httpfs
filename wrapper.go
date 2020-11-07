@@ -15,6 +15,7 @@ func NewModel(fs http.FileSystem, path string) (model.Model, error) {
 		return nil, err
 	}
 	defer f.Close()
+
 	b, err := ioutil.ReadAll(f)
 	if err != nil {
 		return nil, err

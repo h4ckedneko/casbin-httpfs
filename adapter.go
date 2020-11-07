@@ -24,6 +24,7 @@ func LoadPolicyFromFS(fs http.FileSystem, path string, model model.Model) error 
 		return err
 	}
 	defer f.Close()
+
 	scanner := bufio.NewScanner(f)
 	for scanner.Scan() {
 		line := scanner.Text()
