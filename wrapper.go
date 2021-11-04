@@ -8,6 +8,27 @@ import (
 	"github.com/casbin/casbin/v2/model"
 )
 
+const (
+	defaultPathModel  = "model.conf"
+	defaultPathPolicy = "policy.csv"
+)
+
+func normalizePaths(paths []string) []string {
+	if len(paths) == 0 {
+		return []string{
+			defaultPathModel,
+			defaultPathPolicy,
+		}
+	}
+	if len(paths) == 1 {
+		return []string{
+			paths[0] + "/" + defaultPathModel,
+			paths[0] + "/" + defaultPathPolicy,
+		}
+	}
+	return []string{paths[0], paths[1]}
+}
+
 // NewModel returns a newly initialized Model instance.
 func NewModel(fs http.FileSystem, path string) (model.Model, error) {
 	f, err := fs.Open(path)
